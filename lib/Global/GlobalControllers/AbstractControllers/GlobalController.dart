@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 
 import '../../GlobalString/Strings.dart';
 
-class GlobalController{
+abstract class GlobalController{
 
   snackBar(text , context) {
     SnackBar snackBar =  SnackBar(
@@ -15,14 +15,16 @@ class GlobalController{
           text,
           style: const TextStyle(fontSize: 18),
         ));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(getContext()).showSnackBar(snackBar);
   }
 
+  getContext();
+  getString();
 
-  navigateTo(BuildContext context ,destintaion){
-
+  navigateTo(destintaion){
+    print(getString());
     Navigator.push(
-      context,
+      getContext(),
       MaterialPageRoute(builder: (context) => destintaion),
     );
   }
